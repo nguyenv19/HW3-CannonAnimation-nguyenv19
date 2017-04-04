@@ -21,9 +21,6 @@ public class Cannon
     protected Paint cannonPaint = new Paint();
     private int cannonColor;
 
-    protected Paint cannonbasePaint = new Paint();
-    private int cannonbaseColor;
-
     private static final int top = (CannonAnimator.SCREEN_HEIGHT/2-50);
     private static final int bottom = (CannonAnimator.SCREEN_HEIGHT/2+50);
     private static final int left = 0;
@@ -41,7 +38,6 @@ public class Cannon
     {
         cannonPath = new Path();
         rotateAngle = 0;
-        cannonbaseColor = Color.rgb(210, 180, 50);
         cannonColor = Color.rgb(210, 180, 50);
         cannonPaint.setColor(cannonColor);
 
