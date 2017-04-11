@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 public class CannonMainActivity extends Activity //AppCompatActivity
 {
 
+    //private SeekBar gBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,33 @@ public class CannonMainActivity extends Activity //AppCompatActivity
 
         // Lock screen in landscape
         super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+
+        /*
+        // Seekbar to adjust gravity
+        gBar = (SeekBar) findViewById(R.id.seekBar);
+        gBar.setMax(25);
+        gBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+        {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
+            {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar)
+            {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar)
+            {
+
+            }
+        });
+        */
+
 
         // Create the cannon animation canvas and place it in the main layout
         Animator cannonAnim = new CannonAnimator();

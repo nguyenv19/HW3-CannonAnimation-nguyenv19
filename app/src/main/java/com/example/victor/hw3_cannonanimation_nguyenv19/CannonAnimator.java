@@ -18,7 +18,7 @@ public class CannonAnimator implements Animator
 {
     public static final int SCREEN_WIDTH = 2048;
     public static final int SCREEN_HEIGHT = 1392;
-
+    private int initVelocity = 95;
     private int gravity = 5;
     private int controlColors = Color.rgb(210, 180, 50);
     private Cannon myCannon;
@@ -29,6 +29,7 @@ public class CannonAnimator implements Animator
     // All the elements together on the animation canvas
     public CannonAnimator()
     {
+        ///gravity = newG;
         cannonBalls = new ArrayList<>();
         targets = new ArrayList<>();
         myCannon = new Cannon();
@@ -40,7 +41,7 @@ public class CannonAnimator implements Animator
     private void initializeTargets()
     {
         Target t1 = new Target(1500, 300);
-        Target t2 = new Target(1600, 1200);
+        Target t2 = new Target(1900, 600);
         Target t3 = new Target(1550, 775);
         targets.add(t1);
         targets.add(t2);
@@ -50,13 +51,17 @@ public class CannonAnimator implements Animator
     // Creates the controls
     private void initializeCannonControls()
     {
-        cannonControls = new CannonControls[3];
-        cannonControls[0] = new CannonControls(SCREEN_WIDTH-175, SCREEN_HEIGHT-405, SCREEN_WIDTH, SCREEN_HEIGHT-270, "UP", controlColors, CannonControls.cannonUp);
-        cannonControls[1] = new CannonControls(SCREEN_WIDTH-175, SCREEN_HEIGHT-270, SCREEN_WIDTH, SCREEN_HEIGHT-135, "FIRE", Color.RED, CannonControls.cannonFire);
-        cannonControls[2] = new CannonControls(SCREEN_WIDTH-175, SCREEN_HEIGHT-135, SCREEN_WIDTH, SCREEN_HEIGHT, "DOWN", controlColors, CannonControls.cannonDown);
+        cannonControls = new CannonControls[9];
+        cannonControls[0] = new CannonControls(SCREEN_WIDTH-175, SCREEN_HEIGHT-405, SCREEN_WIDTH, SCREEN_HEIGHT-270, "UP", controlColors, CannonControls.cannonUp, 55, 20);
+        cannonControls[1] = new CannonControls(SCREEN_WIDTH-175, SCREEN_HEIGHT-270, SCREEN_WIDTH, SCREEN_HEIGHT-135, "FIRE", Color.RED, CannonControls.cannonFire, 37, 20);
+        cannonControls[2] = new CannonControls(SCREEN_WIDTH-175, SCREEN_HEIGHT-135, SCREEN_WIDTH, SCREEN_HEIGHT, "DOWN", controlColors, CannonControls.cannonDown, 15, 20);
+        cannonControls[3] = new CannonControls(SCREEN_WIDTH-425, SCREEN_HEIGHT-405, SCREEN_WIDTH-190, SCREEN_HEIGHT-270, "+ Gravity ", Color.GREEN, CannonControls.cannongravityUp, 5, 15);
+        cannonControls[4] = new CannonControls(SCREEN_WIDTH-425, SCREEN_HEIGHT-135, SCREEN_WIDTH-190, SCREEN_HEIGHT, "- Gravity", Color.GREEN, CannonControls.cannongravityDown, 10, 15);
+        cannonControls[5] = new CannonControls(SCREEN_WIDTH-425, SCREEN_HEIGHT-270, SCREEN_WIDTH-190, SCREEN_HEIGHT-135, "Gravity: " + gravity, 5, 15);
+        cannonControls[6] = new CannonControls(SCREEN_WIDTH-675, SCREEN_HEIGHT-135, SCREEN_WIDTH-435, SCREEN_HEIGHT, "+ Velocity", Color.GREEN, CannonControls.cannonvelocityUp, 10, 15);
+        cannonControls[7] = new CannonControls(SCREEN_WIDTH-1200, SCREEN_HEIGHT-135, SCREEN_WIDTH-975, SCREEN_HEIGHT, "- Velocity", Color.GREEN, CannonControls.cannonvelocityDown, 10, 15);
+        cannonControls[8] = new CannonControls(SCREEN_WIDTH-970, SCREEN_HEIGHT-135, SCREEN_WIDTH-690, SCREEN_HEIGHT, "Velocity: " + initVelocity, 10, 15);
     }
-
-
 
     @Override
     public int interval()
@@ -95,6 +100,7 @@ public class CannonAnimator implements Animator
         // Draws the cannon balls
         for(CannonBall cb : cannonBalls)
         {
+            // Removes the cannon ball if it reaches past the right side of the screen
             if(cb.getX() > SCREEN_WIDTH)
             {
                 cb = null;
@@ -136,6 +142,7 @@ public class CannonAnimator implements Animator
             if (c.containsPoint(x,y))
             {
                 doAction(event, c.getAction());
+
                 break;
             }
         }
@@ -160,6 +167,28 @@ public class CannonAnimator implements Animator
             case CannonControls.cannonDown:
                 myCannon.rotate(1);
                 break;
+
+            // If user presses the "- Gravity" button, gravity decreases
+            case CannonControls.cannongravityDown:
+                --gravity;
+                initializeCannonControls();
+                break;
+
+            // If user presses the "DOWN" button, cannon aims down
+            case CannonControls.cannongravityUp:
+                ++gravity;
+                initializeCannonControls();
+                break;
+
+            case CannonControls.cannonvelocityUp:
+                ++initVelocity;
+                initializeCannonControls();
+                break;
+
+            case CannonControls.cannonvelocityDown:
+                --initVelocity;
+                initializeCannonControls();
+                break;
         }
     }
 
@@ -167,8 +196,8 @@ public class CannonAnimator implements Animator
     public void fireCannon()
     {
         double angle = Math.toRadians(myCannon.getRotateAngle());
-        double vix = Math.cos(angle) * Cannon.initVelocity;
-        double viy = Math.sin(angle) * Cannon.initVelocity;
+        double vix = Math.cos(angle) * initVelocity;
+        double viy = Math.sin(angle) * initVelocity;
         CannonBall newBall = new CannonBall(myCannon.getcannonCenterX(), myCannon.getcannonCenterY(), (int)vix, (int)viy, 0, gravity);
         cannonBalls.add(newBall);
     }

@@ -17,6 +17,10 @@ public class CannonControls
     public static final int cannonUp = 1;
     public static final int cannonDown = -1;
     public static final int cannonFire = 0;
+    public static final int cannongravityUp = 2;
+    public static final int cannongravityDown = 3;
+    public static final int cannonvelocityDown = 4;
+    public static final int cannonvelocityUp = 5;
     private Paint rectPaint = new Paint();
     private Paint labelPaint = new Paint();
     private Rect rect;
@@ -25,17 +29,32 @@ public class CannonControls
     private int labelY;
     private int action;
 
-    public CannonControls(int initLeft, int initTop, int initRight, int initBottom, String controlLabel, int initColor, int initAction)
+
+    public CannonControls(int initLeft, int initTop, int initRight, int initBottom, String controlLabel, int initColor, int initAction, int newlabelX, int newlabelY)
     {
-        rect = new Rect(initLeft, initTop, initRight, initBottom);
-        rectPaint.setColor(initColor);
+        this.rect = new Rect(initLeft, initTop, initRight, initBottom);
+        this.rectPaint.setColor(initColor);
         this.label = controlLabel;
-        labelPaint.setColor(Color.BLACK);
-        labelPaint.setTextSize(50);
-        labelX = initLeft;
-        labelY = rect.centerY();
+        this.labelPaint.setColor(Color.BLACK);
+        this.labelPaint.setTextSize(50);
+        this.labelX = initLeft + newlabelX;
+        this.labelY = rect.centerY()+newlabelY;
         this.action = initAction;
     }
+
+    public CannonControls(int initLeft, int initTop, int initRight, int initBottom, String newValue, int newlabelX, int newlabelY)
+    {
+        this.rectPaint.setColor(Color.WHITE);
+        this.rectPaint.setStyle(Paint.Style.STROKE);
+        this.rect = new Rect(initLeft, initTop, initRight, initBottom);
+
+        this.label = newValue;
+        this.labelPaint.setColor(Color.BLACK);
+        this.labelPaint.setTextSize(50);
+        this.labelX = initLeft + newlabelX;
+        this.labelY = rect.centerY()+ newlabelY;
+    }
+
 
     // Gets which box the user presses
     public boolean containsPoint(int x, int y)

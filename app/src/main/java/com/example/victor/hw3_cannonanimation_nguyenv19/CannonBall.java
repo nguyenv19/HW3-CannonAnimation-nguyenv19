@@ -57,7 +57,7 @@ public class CannonBall extends CustomCircle
             vx = -1*vx;
         }
 
-        // If it hits the rigt wall, bounces back
+        // If it hits the rigt wall, bounces back NOT REALLY NECESSARY BECAUSE IT SHOULD DISAPPEAR
         if((xRight > rightBound))
         {
             vx = -1*vx;
