@@ -66,7 +66,7 @@ public class CannonAnimator implements Animator
     @Override
     public int interval()
     {
-        return 30;
+        return 10;
     }
 
     @Override
