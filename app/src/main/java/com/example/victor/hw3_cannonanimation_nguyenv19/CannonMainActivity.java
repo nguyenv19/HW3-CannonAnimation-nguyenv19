@@ -16,6 +16,14 @@ import android.widget.LinearLayout;
  * @version September 2012
  * @author Victor Nguyen
  * @version April 2017
+ *
+ * Part B:
+ * Ball bounces off the walls
+ * There can be an arbitrary amount of balls on the screen
+ * Velocity and Gravity can be adjusted by the user
+ *
+ *
+ *
  */
 public class CannonMainActivity extends Activity //AppCompatActivity
 {
