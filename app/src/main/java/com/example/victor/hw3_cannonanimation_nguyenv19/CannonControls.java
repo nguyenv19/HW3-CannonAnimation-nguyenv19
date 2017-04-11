@@ -29,7 +29,7 @@ public class CannonControls
     private int labelY;
     private int action;
 
-
+    // ctor for the buttons
     public CannonControls(int initLeft, int initTop, int initRight, int initBottom, String controlLabel, int initColor, int initAction, int newlabelX, int newlabelY)
     {
         this.rect = new Rect(initLeft, initTop, initRight, initBottom);
@@ -42,6 +42,7 @@ public class CannonControls
         this.action = initAction;
     }
 
+    // ctor the "text view"
     public CannonControls(int initLeft, int initTop, int initRight, int initBottom, String newValue, int newlabelX, int newlabelY)
     {
         this.rectPaint.setColor(Color.WHITE);

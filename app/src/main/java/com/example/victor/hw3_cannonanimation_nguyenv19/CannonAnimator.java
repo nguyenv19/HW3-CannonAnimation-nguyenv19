@@ -59,14 +59,14 @@ public class CannonAnimator implements Animator
         cannonControls[4] = new CannonControls(SCREEN_WIDTH-425, SCREEN_HEIGHT-135, SCREEN_WIDTH-190, SCREEN_HEIGHT, "- Gravity", Color.GREEN, CannonControls.cannongravityDown, 10, 15);
         cannonControls[5] = new CannonControls(SCREEN_WIDTH-425, SCREEN_HEIGHT-270, SCREEN_WIDTH-190, SCREEN_HEIGHT-135, "Gravity: " + gravity, 5, 15);
         cannonControls[6] = new CannonControls(SCREEN_WIDTH-675, SCREEN_HEIGHT-135, SCREEN_WIDTH-435, SCREEN_HEIGHT, "+ Velocity", Color.GREEN, CannonControls.cannonvelocityUp, 10, 15);
-        cannonControls[7] = new CannonControls(SCREEN_WIDTH-1200, SCREEN_HEIGHT-135, SCREEN_WIDTH-975, SCREEN_HEIGHT, "- Velocity", Color.GREEN, CannonControls.cannonvelocityDown, 10, 15);
-        cannonControls[8] = new CannonControls(SCREEN_WIDTH-970, SCREEN_HEIGHT-135, SCREEN_WIDTH-690, SCREEN_HEIGHT, "Velocity: " + initVelocity, 10, 15);
+        cannonControls[7] = new CannonControls(SCREEN_WIDTH-1205, SCREEN_HEIGHT-135, SCREEN_WIDTH-980, SCREEN_HEIGHT, "- Velocity", Color.GREEN, CannonControls.cannonvelocityDown, 10, 15);
+        cannonControls[8] = new CannonControls(SCREEN_WIDTH-975, SCREEN_HEIGHT-135, SCREEN_WIDTH-695, SCREEN_HEIGHT, "Velocity: " + initVelocity, 10, 15);
     }
 
     @Override
     public int interval()
     {
-        return 10;
+        return 20;
     }
 
     @Override
@@ -174,17 +174,19 @@ public class CannonAnimator implements Animator
                 initializeCannonControls();
                 break;
 
-            // If user presses the "DOWN" button, cannon aims down
+            // If user presses the "+ Gravity" button, gravity
             case CannonControls.cannongravityUp:
                 ++gravity;
                 initializeCannonControls();
                 break;
 
+            // If user presses the "+ Velocity" button, velocity increases
             case CannonControls.cannonvelocityUp:
                 ++initVelocity;
                 initializeCannonControls();
                 break;
 
+            // If user presses the "- Velocity" button, velocity decreases
             case CannonControls.cannonvelocityDown:
                 --initVelocity;
                 initializeCannonControls();

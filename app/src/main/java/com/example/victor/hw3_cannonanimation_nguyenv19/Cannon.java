@@ -28,7 +28,6 @@ public class Cannon
     private static final int cannonpivotY = CannonAnimator.SCREEN_HEIGHT/2;
 
     private static final int maxAngle = 90;
-    //public static final int initVelocity = 95;
     private int rotateAngle;
     private RectF cannonBarrel;
     private Path cannonPath;
