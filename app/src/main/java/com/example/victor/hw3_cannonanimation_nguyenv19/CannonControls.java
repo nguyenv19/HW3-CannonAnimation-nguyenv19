@@ -48,7 +48,6 @@ public class CannonControls
         this.rectPaint.setColor(Color.WHITE);
         this.rectPaint.setStyle(Paint.Style.STROKE);
         this.rect = new Rect(initLeft, initTop, initRight, initBottom);
-
         this.label = newValue;
         this.labelPaint.setColor(Color.BLACK);
         this.labelPaint.setTextSize(50);

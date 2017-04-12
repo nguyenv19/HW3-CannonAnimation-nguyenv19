@@ -60,8 +60,6 @@ public abstract class CustomCircle
 
         paint.setColor(Color.RED);
         canvas.drawCircle(x, y, targetRadius-95, paint);
-
-
     }
 
     // Checks to see if two circles overlap

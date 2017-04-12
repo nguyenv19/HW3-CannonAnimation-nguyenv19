@@ -29,7 +29,6 @@ public class CannonAnimator implements Animator
     // All the elements together on the animation canvas
     public CannonAnimator()
     {
-        ///gravity = newG;
         cannonBalls = new ArrayList<>();
         targets = new ArrayList<>();
         myCannon = new Cannon();

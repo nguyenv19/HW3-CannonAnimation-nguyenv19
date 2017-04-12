@@ -39,8 +39,6 @@ public class Cannon
         rotateAngle = 0;
         cannonColor = Color.rgb(210, 180, 50);
         cannonPaint.setColor(cannonColor);
-
-
     }
 
     // Creates the cannon
@@ -49,8 +47,6 @@ public class Cannon
         initCannon();
         cannonBarrel = new RectF(left, top, right, bottom);
         cannonPath.addRect(cannonBarrel, Path.Direction.CW);
-
-
     }
 
     // Draws the cannon
